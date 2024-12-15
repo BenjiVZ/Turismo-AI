@@ -1,0 +1,34 @@
+version: "3.1"
+
+intents:
+  - saludo
+  - despedida
+  - consultar_restaurantes
+  - consultar_atracciones
+  - consultar_actividades
+  - consultar_cultura
+  - consultar_compras
+  - consultar_vida_nocturna
+
+responses:
+  utter_saludo:
+    - text: "¡Hola! Soy el asistente turístico de Mérida. ¿En qué puedo ayudarte?"
+    - text: "¡Bienvenido! ¿Qué te gustaría conocer sobre Mérida?"
+    - text: "¡Hola! Estoy aquí para ayudarte a descubrir Mérida. ¿Qué te gustaría saber?"
+
+  utter_despedida:
+    - text: "¡Hasta luego! Disfruta tu estancia en Mérida"
+    - text: "¡Adiós! Espero que disfrutes mucho Mérida"
+    - text: "¡Gracias por consultar! Que tengas una excelente experiencia en Mérida"
+
+actions:
+  - action_consultar_restaurantes
+  - action_consultar_atracciones
+  - action_consultar_actividades
+  - action_consultar_cultura
+  - action_consultar_compras
+  - action_consultar_vida_nocturna
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

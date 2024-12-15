@@ -1,0 +1,85 @@
+version: "3.1"
+
+nlu:
+- intent: saludo
+  examples: |
+    - hola
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - que tal
+    - saludos
+    - hey
+    - hola bot
+    - como estas
+    - que hay
+
+- intent: despedida
+  examples: |
+    - adiós
+    - hasta luego
+    - chao
+    - nos vemos
+    - hasta pronto
+    - me voy
+    - gracias por todo
+    - bye
+    - hasta mañana
+
+- intent: consultar_restaurantes
+  examples: |
+    - busco restaurantes
+    - donde puedo comer
+    - restaurantes en mérida
+    - quiero comer algo
+    - lugares para comer
+    - recomiéndame un restaurante
+    - mejores restaurantes
+    - donde hay buenos restaurantes
+
+- intent: consultar_atracciones
+  examples: |
+    - que puedo visitar
+    - lugares turísticos
+    - sitios de interés
+    - atracciones turísticas
+    - que hay para ver en mérida
+    - lugares históricos
+    - monumentos importantes
+    - sitios para visitar
+
+- intent: consultar_actividades
+  examples: |
+    - que actividades hay
+    - actividades al aire libre
+    - que puedo hacer
+    - deportes disponibles
+    - actividades turísticas
+    - que se puede hacer aquí
+
+- intent: consultar_cultura
+  examples: |
+    - eventos culturales
+    - museos
+    - teatros
+    - exposiciones
+    - actividades culturales
+    - donde hay cultura
+
+- intent: consultar_compras
+  examples: |
+    - donde puedo comprar
+    - centros comerciales
+    - tiendas
+    - mercados
+    - zonas comerciales
+    - shopping
+
+- intent: consultar_vida_nocturna
+  examples: |
+    - bares
+    - discotecas
+    - vida nocturna
+    - donde salir de noche
+    - lugares para fiesta
+    - antros

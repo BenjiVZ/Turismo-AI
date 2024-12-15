@@ -1,0 +1,30 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_restaurantes\"}}]": "action_consultar_restaurantes",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_restaurantes\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_restaurantes\"}, \"user\": {\"intent\": \"consultar_restaurantes\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_actividades\"}}]": "action_consultar_actividades",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_actividades\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_actividades\"}, \"user\": {\"intent\": \"consultar_actividades\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_vida_nocturna\"}}]": "action_consultar_vida_nocturna",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_vida_nocturna\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_vida_nocturna\"}, \"user\": {\"intent\": \"consultar_vida_nocturna\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_compras\"}}]": "action_consultar_compras",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_compras\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_compras\"}, \"user\": {\"intent\": \"consultar_compras\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}]": "utter_despedida",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}, {\"prev_action\": {\"action_name\": \"utter_despedida\"}, \"user\": {\"intent\": \"despedida\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_cultura\"}}]": "action_consultar_cultura",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_cultura\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_cultura\"}, \"user\": {\"intent\": \"consultar_cultura\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"saludo\"}}]": "utter_saludo",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"saludo\"}}, {\"prev_action\": {\"action_name\": \"utter_saludo\"}, \"user\": {\"intent\": \"saludo\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_atracciones\"}}]": "action_consultar_atracciones",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"consultar_atracciones\"}}, {\"prev_action\": {\"action_name\": \"action_consultar_atracciones\"}, \"user\": {\"intent\": \"consultar_atracciones\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent session_start",
+      "predicting default action with intent restart",
+      "predicting default action with intent back"
+    ]
+  }
+}

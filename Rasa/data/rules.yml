@@ -1,0 +1,43 @@
+version: "3.1"
+
+rules:
+
+- rule: Saludar cuando el usuario saluda
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+
+- rule: Despedirse cuando el usuario se despide
+  steps:
+  - intent: despedida
+  - action: utter_despedida
+
+- rule: Responder sobre restaurantes
+  steps:
+  - intent: consultar_restaurantes
+  - action: action_consultar_restaurantes
+
+- rule: Responder sobre atracciones
+  steps:
+  - intent: consultar_atracciones
+  - action: action_consultar_atracciones
+
+- rule: Responder sobre actividades
+  steps:
+  - intent: consultar_actividades
+  - action: action_consultar_actividades
+
+- rule: Responder sobre cultura
+  steps:
+  - intent: consultar_cultura
+  - action: action_consultar_cultura
+
+- rule: Responder sobre compras
+  steps:
+  - intent: consultar_compras
+  - action: action_consultar_compras
+
+- rule: Responder sobre vida nocturna
+  steps:
+  - intent: consultar_vida_nocturna
+  - action: action_consultar_vida_nocturna

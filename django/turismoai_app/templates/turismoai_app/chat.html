@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TurismoAI Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        .chat-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .chat-header h1 {
+            color: #1a2a6c;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            height: 60vh;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .chat-history {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px;
+            border-radius: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+            line-height: 1.5;
+        }
+
+        .message-content {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #1a2a6c, #2a4858);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: white;
+            color: #333;
+            border: 1px solid #eee;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .bot-message .item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #1a2a6c;
+        }
+
+        .bot-message .item-header {
+            font-weight: 600;
+            color: #1a2a6c;
+            margin-bottom: 5px;
+        }
+
+        .bot-message .item-detail {
+            color: #666;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .message-form {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .message-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: #1a2a6c;
+        }
+
+        .send-button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1a2a6c, #2a4858);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 42, 108, 0.3);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #1a2a6c;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Estilos para emojis y elementos específicos */
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .price {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .schedule {
+            color: #dc3545;
+        }
+
+        .location {
+            color: #007bff;
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1a2a6c;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a4858;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🌄 TurismoAI Mérida</h1>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-history" id="chatHistory"></div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="message-form">
+            <input type="text" id="messageInput" class="message-input" 
+                   placeholder="Pregúntame sobre lugares para visitar en Mérida..." required>
+            <button onclick="sendMessage()" class="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function formatMessage(message) {
+            // Formatear elementos específicos
+            message = message.replace(/🏠|🍳|📍|⏰|💰|🎯|📝|📊|🎒|🎪|🏛️|🛒|🎵/g, 
+                match => `<span class="emoji">${match}</span>`);
+            
+            // Formatear precios
+            message = message.replace(/\$\d+(\.\d{2})?/g, 
+                match => `<span class="price">${match}</span>`);
+            
+            // Formatear horarios
+            message = message.replace(/(Abierto|Horario|⏰)([^<\n]+)/g, 
+                (match, p1, p2) => `${p1}<span class="schedule">${p2}</span>`);
+            
+            // Formatear direcciones
+            message = message.replace(/📍([^<\n]+)/g, 
+                (match, p1) => `📍<span class="location">${p1}</span>`);
+            
+            // Crear tarjetas para elementos
+            const lines = message.split('\n\n');
+            return lines.map(line => {
+                if (line.includes('🏠') || line.includes('🎯') || line.includes('🎪')) {
+                    return `<div class="item">${line}</div>`;
+                }
+                return `<div class="message-content">${line}</div>`;
+            }).join('');
+        }
+
+        function addMessage(message, isUser) {
+            const chatHistory = document.getElementById('chatHistory');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = isUser ? message : formatMessage(message);
+            chatHistory.appendChild(messageDiv);
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'block';
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'none';
+        }
+
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                addMessage(message, true);
+                messageInput.value = '';
+                showTypingIndicator();
+
+                try {
+                    const response = await fetch('/chat/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+
+                    const data = await response.json();
+                    hideTypingIndicator();
+                    
+                    if (data.bot_message) {
+                        addMessage(data.bot_message, false);
+                    }
+                } catch (error) {
+                    hideTypingIndicator();
+                    console.error('Error:', error);
+                    addMessage('Lo siento, hubo un error al procesar tu mensaje.', false);
+                }
+            }
+        }
+
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

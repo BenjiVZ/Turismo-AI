@@ -1,0 +1,38 @@
+Your input ->  hola
+Bot: ¡Hola! Soy el asistente turístico de Mérida. ¿En qué puedo ayudarte?
+
+Your input ->  busco restaurantes
+Bot: [Mostrará lista de restaurantes con tipo, dirección y horario]
+
+Your input ->  que lugares puedo visitar
+Bot: [Mostrará lista de atracciones turísticas]
+
+Your input ->  que actividades hay para hacer
+Bot: [Mostrará lista de actividades al aire libre]
+
+Your input ->  museos
+Bot: [Mostrará lista de lugares culturales]
+
+Your input ->  donde puedo comprar
+Bot: [Mostrará lista de lugares para compras]
+
+Your input ->  lugares para salir de noche
+Bot: [Mostrará lista de vida nocturna]
+
+Your input ->  gracias
+Bot: ¡Hasta luego! Disfruta tu estancia en Mérida
+
+
+
+
+
+pip install djangorestframework django-cors-headers
+
+pip install requests
+
+pip install djangorestframework
+pip install django-cors-headers
+
+rasa run --enable-api --cors "*"
+
+pip install requests

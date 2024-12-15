@@ -1,0 +1,50 @@
+version: "3.1"
+
+stories:
+- story: historia_restaurantes
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: consultar_restaurantes
+  - action: action_consultar_restaurantes
+  - intent: despedida
+  - action: utter_despedida
+
+- story: historia_atracciones
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: consultar_atracciones
+  - action: action_consultar_atracciones
+  - intent: despedida
+  - action: utter_despedida
+
+- story: historia_actividades
+  steps:
+  - intent: consultar_actividades
+  - action: action_consultar_actividades
+
+- story: historia_cultura
+  steps:
+  - intent: consultar_cultura
+  - action: action_consultar_cultura
+
+- story: historia_compras
+  steps:
+  - intent: consultar_compras
+  - action: action_consultar_compras
+
+- story: historia_vida_nocturna
+  steps:
+  - intent: consultar_vida_nocturna
+  - action: action_consultar_vida_nocturna
+
+- story: historia_solo_saludo
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+
+- story: historia_solo_despedida
+  steps:
+  - intent: despedida
+  - action: utter_despedida
