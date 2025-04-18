@@ -22,7 +22,7 @@ def chat_message(request):
             
             # Procesar respuesta de Rasa
             bot_responses = rasa_response.json()
-            if bot_responses:
+            if (bot_responses):
                 # Concatenar todos los mensajes de la respuesta
                 bot_message = '<br><br>'.join(
                     response['text'] for response in bot_responses
@@ -31,6 +31,9 @@ def chat_message(request):
                 # Asegurarse de que los saltos de línea se preserven
                 bot_message = bot_message.replace('\n', '<br>')
                 bot_message = bot_message.replace('\r', '')
+                
+                # Traducir el mensaje del bot
+                bot_message = translate_bot_message(bot_message)
                 
                 print("Final message:", bot_message)  # Debug
             else:
@@ -48,3 +51,15 @@ def chat_message(request):
                 'details': f"Full error: {repr(e)}"
             }, status=500)
     return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+def translate_bot_message(message):
+    translations = {
+        "Hola, ¿cómo puedo ayudarte?": "Hello, how can I help you?",
+        "Aquí tienes algunos lugares para visitar:": "Here are some places to visit:",
+        "Estos son algunos lugares para compras en Mérida:": "Here are some places for shopping in Mérida:",
+        "Estos son algunos lugares culturales en Mérida:": "Here are some cultural places in Mérida:",
+        # Añadir más traducciones según sea necesario
+    }
+    lines = message.split('<br><br>')
+    translated_lines = [translations.get(line, line) for line in lines]
+    return '<br><br>'.join(translated_lines)
